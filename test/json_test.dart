@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:newsapp/models/article.dart';
@@ -19,7 +17,7 @@ void main() {
 
       final response = await http.get(urlPrefix);
       if (response.statusCode == 200) {
-        final idList = jsonDecode(response.body);
+        final idList = parseTopStories(response.body);
         if (idList.isNotEmpty) {
           final storyUrl =
               'https://hacker-news.firebaseio.com/v0/item/${idList.first}.json';
