@@ -1,9 +1,8 @@
-/*
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-import 'package:newsapp/json_parsing.dart';
+import 'package:newsapp/models/article.dart';
 
 void main() {
   test('parses topstories.json', () {
@@ -25,9 +24,9 @@ void main() {
           final storyUrl =
               'https://hacker-news.firebaseio.com/v0/item/${idList.first}.json';
           final storyResponse = await http.get(storyUrl);
-          if (response.statusCode == 200) {
+          if (storyResponse.statusCode == 200) {
             print("Check   ${parseArticle(storyResponse.body).by}");
-            expect(parseArticle(storyResponse.body).by, 'gammarator');
+            expect(parseArticle(storyResponse.body), isNotNull);
           } else {
             print("ERROR   ${parseArticle(storyResponse.body)}");
           }
@@ -36,4 +35,3 @@ void main() {
     },
   );
 }
-*/
